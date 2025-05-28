@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+>
+ 
+<div th:replace="~{standardLayouts/head :: head1}">
+	MUST SHOW FRAGMENT HEAD
+</div>
+ 
+  <body>
+  
+  	<div th:replace="~{standardLayouts/navbar :: navbar1}">
+		MUST SHOW FRAGMENT NAVBAR
+	</div>
+	
+    <section id="prices" class="pt-2 pb-2 bg-dark text-white">
+      <div class="container">
+        <div class="row w-100">
+          <div class="col-lg-12 col-md-12 col-12">
+            <h3 class="display-5 mb-2 text-white" th:text="'Familia de productos'">
+            </h3>
+            <p class="mb-2" th:text="'Familias de productos existentes'"></p>
+            <div class="mb-1">
+            	<a th:text="'Volver atrás'"
+            		th:href="@{/familyProductListGet}"
+            		class="btn btn-primary" role="button">
+            	</a>
+            </div>
+             
+                <div class="col-lg-6 text-center col-md-8 ms-auto me-auto">
+            <div class="input-group input-lg mt-2">
+              <div class="input-group mb-3">
+                <span class="input-group-text" id="basic-addon1">
+                	<i class="fa fa-user-circle"></i>
+                </span>
+                <input type="text" readonly th:value="${familyProduct.getId()}"
+                  class="form-control" th:placeholder="''"
+                  aria-describedby="basic-addon1">
+              </div>
+            </div>
+            <div class="input-group input-lg mt-2">
+              <div class="input-group mb-3">
+                <span class="input-group-text" id="basic-addon1">
+                	<i class="fa fa-user-circle"></i>
+                </span>
+                <input type="text" readonly th:value="${familyProduct.getName()}"
+                  class="form-control" th:placeholder="''"
+                  aria-describedby="basic-addon1">
+              </div>
+                    
+                  <td>
+                    	<ul>
+                    		<li th:each="product : ${familyProduct.getProductList()}"
+                    			th:text="${product.getDescription()} + ' > ' + ${product.getPrice()} + '€'">
+                    		</li>
+ 
+                    	</ul>
+				</td>
+                  
+                  
+                </tbody>
+           
+            </div>
+          </div>
+        </div>
+      </div>
+      </div>
+    </section>
+ 
+  	<div th:replace="~{standardLayouts/footer :: footer1}">
+		MUST SHOW FRAGMENT FOOTER
+	</div>
+ 
+  	<div th:replace="~{standardLayouts/script :: script1}">
+		MUST SHOW FRAGMENT SCRIPT
+	</div>
+ 
+  </body>
+ 
+</html>
